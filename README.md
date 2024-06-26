@@ -1,2 +1,3 @@
-# PlutoDB
-A simple and persistent DB!
+# plutodb
+
+> A simple and persistent DB, dwarf planet approved.

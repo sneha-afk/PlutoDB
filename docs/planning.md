@@ -18,6 +18,26 @@ TBD
 
 TBD
 
+## goals
+
+### overall
+- [ ] Effective serialization/deserialization from file
+- [ ] Tokenized user input in CLI
+- [ ] Efficient lookups and insertions into individual tables
+
+### reach
+- [ ] Referential integrity to other tables
+- [ ] Complex constraints such as CHECK
+- [ ] Batch query execution
+- [ ] User credentials and encryption of data
+- [ ] Research: optimization techniques
+
+### baseline
+- [ ] CREATE/INSERT/SELECT statements
+- [ ] Persistence across program calls
+- [ ] Schema validation within table constraints
+- [ ] Linear lookups, constant inserts
+
 ---
 ## dev journal
 
@@ -27,6 +47,6 @@ TBD
 origin. motivation: rdbms are cool, and i should practice c++!
 
 preliminary sequence of features:
-* start with INSERT and SELECT statements
+* start with CREATE/INSERT/SELECT statements
 * naive storage: plain text files in the same directory
 * naive data structure: linked list during up-time

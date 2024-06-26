@@ -35,3 +35,5 @@
 # ---
 # Exclude build directory
 build/
+
+.vscode/
