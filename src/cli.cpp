@@ -1,13 +1,13 @@
 #include "cli.h"
 
+#include "util.h"
+
 #include <algorithm>
 
-std::string &strToUpper(std::string &s) {
-    // https://stackoverflow.com/a/735215
-    std::transform(s.begin(), s.end(), s.begin(), ::toupper);
-    return s;
-}
-
+/**
+ * Separate an input line by space delimited tokens, keeping strings
+ * that are denoted with "" or '' together.
+ */
 std::vector<std::string> &parseTokens(
     std::vector<std::string> &tokens, std::string &str) {
     tokens.clear();
@@ -38,7 +38,7 @@ std::vector<std::string> &parseTokens(
                 std::string string = str.substr(quote, after - quote + 1);
 
                 if (!before.empty()) {
-                    tokens.push_back(strToUpper(before));
+                    tokens.push_back(before);
                 }
                 tokens.push_back(string);
                 start = after + 2;
@@ -47,9 +47,26 @@ std::vector<std::string> &parseTokens(
         }
 
         std::string token = str.substr(start, end - start);
-        tokens.push_back(strToUpper(token));
+        tokens.push_back(token);
         start = end + 1;
     }
 
+    return tokens;
+}
+
+/**
+ * Capitalize tokens that are not case-sensitive strings or shell commands.
+ */
+std::vector<std::string> &capitalizeTokens(std::vector<std::string> &tokens) {
+    for (auto &t : tokens) {
+        if (!t.empty()) {
+            switch (t[0]) {
+                case '"':
+                case '\'':
+                case '\\': continue;
+                default: strToUpper(t);
+            }
+        }
+    }
     return tokens;
 }
