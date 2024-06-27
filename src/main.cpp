@@ -1,4 +1,5 @@
 #include "cli.h"
+#include "custom_exceptions.h"
 #include "util.h"
 
 #include <iostream>
@@ -13,7 +14,12 @@ int main(int argc, char const *argv[]) {
 
         if (input.empty()) continue;
 
-        tokens = capitalizeTokens(parseTokens(tokens, input));
+        try {
+            tokens = capitalizeTokens(parseTokens(tokens, input));
+        } catch (const Plutoception &e) {
+            std::cerr << e.what() << std::endl;
+            continue;
+        }
 
         if (tokens[0] == "\\q") break;
     }

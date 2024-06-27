@@ -1,10 +1,11 @@
 #include "cli.h"
 
+#include "custom_exceptions.h"
 #include "util.h"
 
 #include <algorithm>
 
-/**
+/*
  * Separate an input line by space delimited tokens, keeping strings
  * that are denoted with "" or '' together.
  */
@@ -31,10 +32,13 @@ std::vector<std::string> &parseTokens(
                 // Handle the token before the string and the string itself (include quotes)
                 std::string before = str.substr(start, quote - start);
 
-                int after = str.find('"', quote + 1);
+                int after = str.find(str[quote], quote + 1);
+
+                // Unexpected quotation mark was found
                 if (after == std::string::npos) {
-                    after = str.find('\'', quote + 1);
+                    throw PESyntax(str, quote);
                 }
+
                 std::string string = str.substr(quote, after - quote + 1);
 
                 if (!before.empty()) {
@@ -54,18 +58,15 @@ std::vector<std::string> &parseTokens(
     return tokens;
 }
 
-/**
- * Capitalize tokens that are not case-sensitive strings or shell commands.
- */
+// Capitalize tokens that are not case-sensitive strings or shell commands.
 std::vector<std::string> &capitalizeTokens(std::vector<std::string> &tokens) {
     for (auto &t : tokens) {
-        if (!t.empty()) {
-            switch (t[0]) {
-                case '"':
-                case '\'':
-                case '\\': continue;
-                default: strToUpper(t);
-            }
+        if (t.empty()) continue;
+        switch (t[0]) {
+            case '"':
+            case '\'':
+            case '\\': continue;
+            default: strToUpper(t);
         }
     }
     return tokens;

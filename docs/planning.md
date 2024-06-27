@@ -41,6 +41,15 @@ TBD
 ---
 ## dev journal
 
+### June 26, 2024
+
+* Parsing user input to get tokens
+    * Strings that are surrounded by quotes are considered case sensitive
+    * Support for slash commands (such as `\q`)
+* ex. `SELECT name from "Persons";` is parsed as [`SELECT`, `NAME`, `FROM`, `"Persons"`].
+* Started a exception hierarchy, with a custom `std::exception` type called `Plutoception`
+    * `PESyntax` for pointing at errors within a user's input
+
 
 ### June 25, 2024
 
