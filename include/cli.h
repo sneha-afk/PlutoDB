@@ -18,6 +18,7 @@ enum class Keyword {
     UPDATE,
     TRUNCATE,
     ALTER,
+    BEGIN,
     COMMIT,
     ROLLBACK,
 };
@@ -27,13 +28,14 @@ static std::map<std::string, Keyword> keywordMap { { "SELECT", Keyword::SELECT }
     { "DELETE", Keyword::DELETE }, { "REPLACE", Keyword::REPLACE },
     { "DROP", Keyword::DROP }, { "UPDATE", Keyword::UPDATE },
     { "TRUNCATE", Keyword::TRUNCATE }, { "ALTER", Keyword::ALTER },
-    { "COMMIT", Keyword::COMMIT }, { "ROLLBACK", Keyword::ROLLBACK } };
+    {"BEGIN", Keyword::BEGIN}, { "COMMIT", Keyword::COMMIT }, { "ROLLBACK", Keyword::ROLLBACK } };
 
-enum class Shell { QUIT, HELP, ABOUT };
+enum class Shell { QUIT, HELP, KEYWLIST, ABOUT };
 
-static std::map<std::string, Shell> commandMap {
+static std::map<std::string, Shell> shellMap {
     { "\\q", Shell::QUIT },
     { "\\h", Shell::HELP },
+    { "\\keyw", Shell::KEYWLIST},
     { "\\about", Shell::ABOUT },
 };
 

@@ -39,9 +39,22 @@ public:
     PEInvalidCmd(const std::string &cmd)
         : Plutoception("") {
         std::ostringstream fmt;
-        fmt << TERM_RED << "Plutoexception: invalid command" << TERM_RESET << ": \"" << cmd
-            << "\" is unknown"
+        fmt << TERM_RED << "Plutoexception: invalid command" << TERM_RESET << ": \""
+            << cmd << "\" is unknown"
             << "\n\t" << TERM_BLUE << "Enter \\h for help!\n"
+            << TERM_RESET;
+        msg_ = fmt.str();
+    }
+};
+
+class PEUnsupportedKeyw : public Plutoception {
+public:
+    PEUnsupportedKeyw(const std::string &kw)
+        : Plutoception("") {
+        std::ostringstream fmt;
+        fmt << TERM_RED << "Plutoexception: unsupported keyword" << TERM_RESET << ": \""
+            << kw << "\" is currently unspported"
+            << "\n\t" << TERM_BLUE << "Enter \\keyw for a list of supported keywords!\n"
             << TERM_RESET;
         msg_ = fmt.str();
     }

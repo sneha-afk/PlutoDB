@@ -12,4 +12,8 @@ static std::string ASCII_LOGO = "\
 
 static std::string HELP_MSG = "PlutoDB Help Menu\n\n\
 \\h\t\t\tView help menu\n\
-\\q\t\t\tQuit PlutoDB";
+\\q\t\t\tQuit PlutoDB\n\
+\\keyw\t\t\tView list of supported keywords";
+
+static std::string SUPPORTED_KEYW = "PlutoDB Keywords\n\n\
+";
