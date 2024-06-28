@@ -4,8 +4,9 @@ IndentWidth: 4
 ---
 Language: Cpp
 AlignConsecutiveMacros: true
-AlignEscapedNewlines: Right
+AlignEscapedNewlines: Left
 AlignOperands: true
+AllowShortEnumsOnASingleLine: true
 AllowShortCaseLabelsOnASingleLine: true
 AllowShortIfStatementsOnASingleLine: true
 ColumnLimit: 90

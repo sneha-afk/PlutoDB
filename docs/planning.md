@@ -41,6 +41,13 @@ TBD
 ---
 ## dev journal
 
+### June 27, 2024
+
+* Mapping string for keywords and shell commands to enums
+    * Easier to send into respective handlers later on
+    * Catches invalid shell commands (slash commands)
+* Help menu started, along with some cute ASCII art
+
 ### June 26, 2024
 
 * Parsing user input to get tokens
