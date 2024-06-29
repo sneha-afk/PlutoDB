@@ -12,7 +12,25 @@ A simple DBMS with an easy user CLI and efficient data representation.
 
 * `main.cpp`: running loop of the program, continuously takes in user input and directs to appropriate handler
 
-TBD
+
+### memory representation
+
+My vision for PlutoDB is to be a lightweight RDBMS with a functional SQL parser. Tackling single-relation queries and constraints will be the first challenge, then expanding to multirelation links.
+* `QueryHandler` that has access to the tables in `DB`
+    * Methods to oversee the vector of `Table`s in `DB`
+    * Catches catches exceptions thrown from the lower hierarchy
+    * Need a more robust lexer, parser, and executor
+* `class DB`: overarching class containing data and handlers
+* `class Table`: stores the information of a relation including its schema and records
+    * Contains a vector of `Record`s since there is a variable amount
+    * Methods to insert, update, and delete records with datatype, `UNIQUE`, `PRIMARY KEY`, etc. validation
+    * Naive approach first: linear search with corresponding values to find
+* `class Record`: a finite row within the relation
+    * Contains a map of string field names to `Field`s to retrieve
+    * Getter/Setter methods to make updates more straightforward
+* `class Field`: segment of a `Record`, an interface for more granular types
+
+
 
 ## features
 
@@ -40,6 +58,15 @@ TBD
 
 ---
 ## dev journal
+
+### June 28, 2024
+
+* Started planning on how to represent the data when in-memory
+    * Table -> Record -> Field
+    * To consider: how to deal with validating Field datatypes during runtime
+* Need a more robust lexer and parser for queries
+    * My idea: step aside from this and create a simpler key-value store
+    * Build the lexer and parser for an easier use-case to bring into here
 
 ### June 27, 2024
 
